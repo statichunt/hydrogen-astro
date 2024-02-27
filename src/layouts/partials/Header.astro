@@ -1,0 +1,171 @@
+---
+import menuJson from "@/config/menu.json";
+import { getSinglePage } from "@/lib/contentParser.astro";
+
+interface ChildNavigationLink {
+  name: string;
+  url: string;
+}
+
+interface NavigationLink {
+  name: string;
+  url: string;
+  hasChildren?: boolean;
+  children?: ChildNavigationLink[];
+}
+
+const menu: { main: NavigationLink[] } = menuJson;
+const { pathname } = Astro.url;
+
+const posts = await getSinglePage("posts");
+
+// Extracting unique categories from posts
+const uniqueCategories: string[] = [
+  ...new Set(posts.flatMap((post: any) => post.data.categories)),
+];
+
+const categories: NavigationLink[] = uniqueCategories.map(
+  (category: string) => ({
+    name: category,
+    url: `/categories/${category.toLowerCase().replace(/\s+/g, "-")}`,
+  }),
+);
+
+// Constructing combinedMenu
+const combinedMenu: NavigationLink[] = [];
+
+// Adding the first item of main
+combinedMenu.push(menu.main[0]);
+
+// Adding all categories
+if (
+  pathname.startsWith(menu.main[0].url) &&
+  !menu.main.slice(1).some((item) => pathname.startsWith(item.url))
+) {
+  combinedMenu.push(...categories);
+}
+
+// Adding the rest of the items from main excluding the first one
+if (!pathname.startsWith("/categories/")) {
+  combinedMenu.push(...menu.main.slice(1));
+}
+---
+
+<header class={`header mt-8 pb-3 pt-12`}>
+  <nav class="navbar container text-center md:text-left">
+    <!-- navbar toggler -->
+    <input id="nav-toggle" type="checkbox" class="hidden" />
+    <label
+      for="nav-toggle"
+      class="order-3 cursor-pointer btn btn-primary inline-flex items-center lg:order-1 md:hidden"
+    >
+      <svg
+        id="show-button"
+        class="mr-1 h-4 w-4 fill-current block"
+        viewBox="0 0 20 20"
+      >
+        <title>Menu Open</title>
+        <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
+      </svg>
+      <svg
+        id="hide-button"
+        class="mr-1 h-4 w-4 fill-current hidden"
+        viewBox="0 0 20 20"
+      >
+        <title>Menu Close</title>
+        <polygon
+          points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
+          transform="rotate(45 10 10)"></polygon>
+      </svg>
+      Menu
+    </label>
+    <!-- /navbar toggler -->
+
+    {
+      pathname !== "/" && (
+        <div class="hidden text-center md:block">
+          <a
+            class="mb-12  inline-flex items-center text-primary hover:underline"
+            href="/"
+          >
+            <svg
+              class="mr-2"
+              width="21"
+              height="16"
+              viewBox="0 0 21 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M.292892 7.29289c-.3905235.39053-.3905235 1.02369.0 1.41422L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711 8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8 8.07107 2.34315C8.46159 1.95262 8.46159 1.31946 8.07107.928932 7.68054.538408 7.04738.538408 6.65685.928932L.292892 7.29289zM21 7H1V9H21V7z"
+                fill="currentcolor"
+              />
+            </svg>
+            Back to Home
+          </a>
+        </div>
+      )
+    }
+
+    <ul
+      id="nav-menu"
+      class="navbar-nav order-3 w-full hidden justify-center md:order-1 md:flex md:w-auto md:space-x-2"
+    >
+      {
+        combinedMenu.map((menu) => (
+          <>
+            {menu.hasChildren ? (
+              <li class="nav-item nav-dropdown group relative">
+                <span
+                  class={`nav-link inline-flex items-center ${
+                    menu.children?.map(({ url }) => url).includes(pathname) ||
+                    menu.children
+                      ?.map(({ url }) => `${url}/`)
+                      .includes(pathname)
+                      ? "active"
+                      : ""
+                  }`}
+                >
+                  {menu.name}
+                  <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  </svg>
+                </span>
+                <ul class="nav-dropdown-list hidden group-hover:block lg:invisible lg:absolute lg:block lg:opacity-0 lg:group-hover:visible lg:group-hover:opacity-100">
+                  {menu.children?.map((child) => (
+                    <li class="nav-dropdown-item">
+                      <a
+                        href={child.url}
+                        class={`nav-dropdown-link inline-block ${
+                          (pathname === `${child.url}/` ||
+                            pathname === child.url) &&
+                          "active"
+                        }`}
+                      >
+                        {child.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li class="nav-item">
+                <a
+                  href={menu.url}
+                  class={`nav-link inline-block ${
+                    !menu.url.includes("/categories") && "text-dark"
+                  } ${
+                    (pathname === `${menu.url}/` || pathname === menu.url) &&
+                    "nav-link-active"
+                  }`}
+                >
+                  {menu.name}
+                </a>
+              </li>
+            )}
+          </>
+        ))
+      }
+    </ul>
+  </nav>
+</header>

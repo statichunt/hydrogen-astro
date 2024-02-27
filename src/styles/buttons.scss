@@ -1,0 +1,23 @@
+.btn {
+  @apply inline-block border px-4 py-[11px] font-normal transition;
+}
+
+.btn-primary {
+  @apply rounded border-none bg-white text-black no-underline hover:bg-primary;
+}
+
+.btn-outline-primary {
+  @apply border-primary bg-transparent hover:bg-primary hover:text-dark;
+}
+
+.btn-link {
+  @apply relative overflow-hidden duration-200 hover:ml-1;
+
+  &::after {
+    @apply absolute right-0 bottom-0 h-[1px] w-0 bg-primary transition-all duration-200 content-[""];
+  }
+
+  &:hover::after {
+    @apply right-auto left-0 w-full;
+  }
+}

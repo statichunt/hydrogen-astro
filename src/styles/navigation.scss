@@ -1,0 +1,47 @@
+// navbar toggler
+input#nav-toggle:checked + label #show-button {
+  @apply hidden;
+}
+
+input#nav-toggle:checked + label #hide-button {
+  @apply block;
+}
+
+input#nav-toggle:checked ~ #nav-menu {
+  @apply block;
+}
+
+// navbar items
+.navbar {
+  @apply relative;
+}
+
+.navbar-brand {
+  @apply text-xl font-semibold text-dark;
+  image {
+    @apply max-h-full max-w-full;
+  }
+}
+
+.navbar-nav {
+  @apply mt-7 text-center  md:mt-0 md:text-left;
+}
+
+.nav-item {
+  @apply my-2 md:my-0;
+}
+
+.nav-link {
+  @apply rounded px-3 py-[3px] text-text transition duration-200 ease-in-out hover:bg-white/10;
+
+  &-active {
+    @apply bg-white/10;
+  }
+}
+
+//accordion
+.accordion {
+  ul {
+    @apply my-0;
+  }
+}

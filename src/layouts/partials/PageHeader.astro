@@ -1,0 +1,13 @@
+---
+import { humanize } from "@/lib/utils/textConverter";
+
+const { title = "" }: { title?: string } = Astro.props;
+---
+
+<section>
+  <div class="container text-center">
+    <div class="px-8 py-14 font-normal">
+      <h1 set:text={humanize(title)} class="font-normal" />
+    </div>
+  </div>
+</section>

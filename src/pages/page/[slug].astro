@@ -1,0 +1,60 @@
+---
+import Pagination from "@/components/Pagination.astro";
+import Post from "@/components/Post.astro";
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import type { CollectionKey } from "astro:content";
+const BLOG_FOLDER = config.settings.blog_folder;
+
+const { slug } = Astro.params;
+const posts = await getSinglePage(BLOG_FOLDER as CollectionKey);
+const sortedPosts = sortByDate(posts);
+const totalPages = Math.ceil(posts.length / config.settings.pagination);
+const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
+const indexOfLastPost = currentPage * config.settings.pagination;
+const indexOfFirstPost = indexOfLastPost - config.settings.pagination;
+const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+export async function getStaticPaths() {
+  const BLOG_FOLDER = config.settings.blog_folder;
+  const posts = await getSinglePage(BLOG_FOLDER as CollectionKey);
+  const totalPages = Math.ceil(posts.length / config.settings.pagination);
+  const paths = [];
+
+  for (let i = 1; i < totalPages; i++) {
+    paths.push({
+      params: {
+        slug: (i + 1).toString(),
+      },
+    });
+  }
+  return paths;
+}
+---
+
+<Base>
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto lg:col-10">
+          <div class="row">
+            {
+              currentPosts.map((post, i) => (
+                <Post
+                  className="col-12 mb-6 sm:col-6"
+                  key={"key-" + i}
+                  post={post}
+                />
+              ))
+            }
+          </div>
+        </div>
+      </div>
+      <div class="mt-12">
+        <Pagination totalPages={totalPages} currentPage={currentPage} />
+      </div>
+    </div>
+  </section>
+</Base>

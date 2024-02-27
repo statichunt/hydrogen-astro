@@ -1,0 +1,47 @@
+---
+import Post from "@/components/Post.astro";
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { getTaxonomy } from "@/lib/taxonomyParser.astro";
+import config from "@/config/config.json";
+import type { CollectionKey } from "astro:content";
+import taxonomyFilter from "@/lib/utils/taxonomyFilter";
+const { blog_folder } = config.settings;
+
+// get static paths for all categories
+export async function getStaticPaths() {
+  const { blog_folder } = config.settings;
+  const categories = await getTaxonomy(blog_folder, "categories");
+
+  return categories.map((category) => {
+    return {
+      params: { category },
+    };
+  });
+}
+
+const { category } = Astro.params;
+
+// get posts by category
+const posts = await getSinglePage(blog_folder as CollectionKey);
+const filterByCategories = taxonomyFilter(posts, "categories", category!);
+---
+
+<Base>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto lg:col-10">
+          <h1 class="text-center capitalize font-normal">{category}</h1>
+          <div class="row pt-12">
+            {
+              filterByCategories.map((post) => (
+                <Post className="mb-6 sm:col-6" post={post} />
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>
