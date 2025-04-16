@@ -1,34 +1,19 @@
 ---
 import ImageMod from "@/components/ImageMod.astro";
 import Pagination from "@/components/Pagination.astro";
+import Post from "@/components/Post.astro";
 import Social from "@/components/Social.astro";
-import Base from "@/layouts/Base.astro";
-import { sortByDate } from "@/lib/utils/sortFunctions";
-import { markdownify } from "@/lib/utils/textConverter";
-import type { Button, Feature } from "@/types";
-
 import config from "@/config/config.json";
 import social from "@/config/social.json";
+import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
-import Post from "@/components/Post.astro";
-// import Pagination from "@layouts/components/Pagination";
-// import Post from "@layouts/components/Post";
-// import Social from "@layouts/components/Social";
-const { blog_folder } = config.settings;
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import { markdownify } from "@/lib/utils/textConverter";
+
 const posts = await getSinglePage("posts");
 const { pagination } = config.settings;
 const { name, image, designation, bio } = config.profile;
 const sortPostByDate = sortByDate(posts);
-
-interface Homepage {
-  banner: {
-    title: string;
-    content: string;
-    image: string;
-    button: Button;
-  };
-  features: Feature[];
-}
 ---
 
 <Base>

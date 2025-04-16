@@ -4,12 +4,11 @@ import PostSingle from "@/layouts/PostSingle.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 
 export async function getStaticPaths() {
-  const BLOG_FOLDER = "posts";
-  const posts = await getSinglePage(BLOG_FOLDER);
+  const posts = await getSinglePage("posts");
 
   const paths = posts.map((post) => ({
     params: {
-      single: post.slug,
+      single: post.id,
     },
     props: { post },
   }));
@@ -24,7 +23,6 @@ const { title, meta_title, description, image } = post.data;
   title={title}
   meta_title={meta_title}
   description={description}
-  image={image}
->
+  image={image}>
   <PostSingle post={post} />
 </Base>

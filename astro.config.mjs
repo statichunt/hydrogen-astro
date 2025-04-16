@@ -3,19 +3,27 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import AutoImport from "astro-auto-import";
-import { defineConfig, squooshImageService } from "astro/config";
+import { defineConfig } from "astro/config";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
+import sharp from "sharp";
 import config from "./src/config/config.json";
+
+let highlighter;
+async function getHighlighter() {
+  if (!highlighter) {
+    const { getHighlighter } = await import("shiki");
+    highlighter = await getHighlighter({ theme: "one-dark-pro" });
+  }
+  return highlighter;
+}
 
 // https://astro.build/config
 export default defineConfig({
   site: config.site.base_url ? config.site.base_url : "http://examplesite.com",
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
-  image: {
-    service: squooshImageService(),
-  },
+  image: { service: sharp() },
   integrations: [
     react(),
     sitemap(),
@@ -51,6 +59,8 @@ export default defineConfig({
       theme: "one-dark-pro",
       wrap: true,
     },
+    highlighter: getHighlighter,
+
     extendDefaultPlugins: true,
   },
 });

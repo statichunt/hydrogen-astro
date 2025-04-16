@@ -1,7 +1,5 @@
 ---
-import config from "@/config/config.json";
 import dateFormat from "@/lib/utils/dateFormat";
-const { blog_folder } = config.settings;
 
 const { post, className } = Astro.props;
 const { id, slug, body, data, collection } = post;
@@ -15,8 +13,7 @@ const { id, slug, body, data, collection } = post;
           <li>
             <a
               class="text-primary"
-              href={`/categories/${category.toLowerCase()}`}
-            >
+              href={`/categories/${category?.toLowerCase()}`}>
               {category}
             </a>
           </li>
@@ -25,14 +22,13 @@ const { id, slug, body, data, collection } = post;
     </ul>
     <p class="my-4">{dateFormat(data.date)}</p>
     <h2 class="h3 mb-2 font-normal">
-      <a href={`/${blog_folder}/${post.slug}`} class="block">
+      <a href={`/posts/${post.id}`} class="block">
         {data.title}
       </a>
     </h2>
     <a
       class="btn-link mt-7 inline-flex items-center hover:text-primary"
-      href={`/${blog_folder}/${slug}`}
-    >
+      href={`/posts/${id}`}>
       Continue Reading
       <svg
         class="ml-1"
@@ -40,8 +36,7 @@ const { id, slug, body, data, collection } = post;
         height="11"
         viewBox="0 0 16 8"
         fill="currentcolor"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M15.3536 4.35355c.1952-.19526.1952-.51184.0-.7071L12.1716.464467C11.9763.269205 11.6597.269205 11.4645.464467c-.1953.195262-.1953.511845.0.707103L14.2929 4 11.4645 6.82843c-.1953.19526-.1953.51184.0.7071C11.6597 7.7308 11.9763 7.7308 12.1716 7.53553l3.182-3.18198zM-.437114e-7 4.5H15v-1H.437114e-7l-.874228e-7 1z"
         ></path>
