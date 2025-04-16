@@ -1,0 +1,20 @@
+@utility bg-gradient {
+  @apply bg-gradient-to-b from-[rgba(249,249,249,1)] from-[0.53%] to-white to-[83.28%];
+}
+
+@utility rounded-sm {
+  border-radius: 4px;
+}
+@utility rounded {
+  border-radius: 6px;
+}
+@utility rounded-lg {
+  border-radius: 12px;
+}
+@utility rounded-xl {
+  border-radius: 16px;
+}
+
+@utility shadow {
+  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.05);
+}

@@ -7,17 +7,15 @@
 }
 
 .btn-outline-primary {
-  @apply border-primary bg-transparent hover:bg-primary hover:text-dark;
+  @apply border-primary bg-transparent hover:bg-primary hover:text-text-dark;
 }
 
 .btn-link {
   @apply relative overflow-hidden duration-200 hover:ml-1;
-
-  &::after {
-    @apply absolute right-0 bottom-0 h-[1px] w-0 bg-primary transition-all duration-200 content-[""];
-  }
-
-  &:hover::after {
-    @apply right-auto left-0 w-full;
-  }
+}
+.btn-link::after {
+  @apply absolute right-0 bottom-0 h-[1px] w-0 bg-primary transition-all duration-200 content-[""];
+}
+.btn-link:hover::after {
+  @apply right-auto left-0 w-full;
 }

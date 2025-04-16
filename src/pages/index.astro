@@ -28,6 +28,7 @@ const sortPostByDate = sortByDate(posts);
             width={220}
             height={220}
             alt={name}
+            loading="eager"
           />
           <h1
             set:html={markdownify(name)}
