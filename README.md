@@ -66,6 +66,19 @@ After finishing all the customization, you can create a production build by runn
 ```
 npm run build
 ```
+<!-- edit with sitepins -->
+
+## 📝 Edit Content with CMS
+
+This template comes pre-configured with [**Sitepins**](https://sitepins.com), a Git-based Headless CMS designed for seamless content management. You can update your website’s text, images, and configuration without touching a single line of code.
+
+**How to get started:**
+
+Click the Edit with Sitepins button below and follow the on-screen instructions to start editing your content visually.
+
+  <a target="_blank" href="https://app.sitepins.com/new/clone?name=Hydrogen%20Astro&repository=https://github.com/statichunt/hydrogen-astro/">
+    <img src="https://sitepins.com/button.svg" alt="Edit with Sitepins">
+  </a>
 
 <!-- reporting issue -->
 ## Reporting Issues
