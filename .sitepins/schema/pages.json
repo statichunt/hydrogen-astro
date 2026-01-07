@@ -1,0 +1,40 @@
+{
+  "file": "src/content/pages/elements.mdx",
+  "name": "pages",
+  "fileType": "mdx",
+  "fmType": "yaml",
+  "template": [
+    {
+      "name": "title",
+      "label": "Title",
+      "type": "string",
+      "value": "",
+      "isRequired": true,
+      "defaultValue": ""
+    },
+    {
+      "name": "meta_title",
+      "label": "Meta Title",
+      "type": "string",
+      "value": "",
+      "isRequired": true,
+      "defaultValue": ""
+    },
+    {
+      "name": "description",
+      "label": "Description",
+      "type": "string",
+      "value": "",
+      "isRequired": true,
+      "defaultValue": ""
+    },
+    {
+      "name": "draft",
+      "label": "Draft",
+      "type": "boolean",
+      "value": false,
+      "isRequired": true,
+      "defaultValue": ""
+    }
+  ]
+}
