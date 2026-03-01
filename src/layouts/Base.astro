@@ -13,7 +13,7 @@ const { pathname } = Astro.url;
 // font families
 const pf = theme.fonts.font_family.primary;
 
-let fontPrimary, fontSecondary;
+let fontPrimary;
 if (theme.fonts.font_family.primary) {
   fontPrimary = theme.fonts.font_family.primary
     .replace(/\+/g, " ")
