@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "format": "prettier -w ./src",
     "deploy:cf-workers": "npm run build && wrangler deploy",
-    "preview:cf-workers": "npm run build && wrangler dev"
+    "preview:cf-workers": "npm run build && wrangler dev",
+    "check": "astro check"
   },
   "dependencies": {
     "@astrojs/mdx": "5.0.0-beta.9",
