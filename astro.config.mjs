@@ -3,20 +3,10 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import AutoImport from "astro-auto-import";
-import { defineConfig } from "astro/config";
+import { defineConfig, sharpImageService } from "astro/config";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
-import sharp from "sharp";
 import config from "./src/config/config.json";
-
-let highlighter;
-async function getHighlighter() {
-  if (!highlighter) {
-    const { getHighlighter } = await import("shiki");
-    highlighter = await getHighlighter({ theme: "one-dark-pro" });
-  }
-  return highlighter;
-}
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,7 +15,7 @@ export default defineConfig({
   trailingSlash: config.site.trailing_slash ? "always" : "never",
 
   vite: { plugins: [tailwindcss()] },
-  image: { service: sharp() },
+  image: { service: sharpImageService() },
 
   integrations: [
     react(),
@@ -58,8 +48,6 @@ export default defineConfig({
       theme: "one-dark-pro",
       wrap: true,
     },
-    highlighter: getHighlighter,
 
-    extendDefaultPlugins: true,
   },
 });
