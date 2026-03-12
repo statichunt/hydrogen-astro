@@ -3,12 +3,11 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import AutoImport from "astro-auto-import";
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig, fontProviders,sharpImageService } from "astro/config";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
 import config from "./src/config/config.json";
 import theme from "./src/config/theme.json";
-
 // Helper to parse font string format: "FontName:wght@400;500;600;700"
 function parseFontString(fontStr) {
   const [name, weightPart] = fontStr.split(":");
@@ -50,7 +49,7 @@ export default defineConfig({
   trailingSlash: config.site.trailing_slash ? "always" : "never",
 
   vite: { plugins: [tailwindcss()] },
-  image: { service: sharp() },
+  image: { service: sharpImageService() },
   fonts: fontsConfig,
   integrations: [
     react(),
