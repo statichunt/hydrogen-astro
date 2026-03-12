@@ -1,5 +1,6 @@
 import { glob } from "astro/loaders";
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
 
 // Post collection schema
 const postCollection = defineCollection({
@@ -8,11 +9,11 @@ const postCollection = defineCollection({
     title: z.string(),
     meta_title: z.string().optional(),
     description: z.string().optional(),
-    date: z.date().optional(),
+    date: z.coerce.date().optional(),
     image: z.string().optional(),
     author: z.string().default("Admin"),
-    categories: z.array(z.string()).default(["others"]),
-    tags: z.array(z.string()).default(["others"]),
+    categories: z.array(z.string()).default(() => ["others"]),
+    tags: z.array(z.string()).default(() => ["others"]),
     draft: z.boolean().optional(),
   }),
 });

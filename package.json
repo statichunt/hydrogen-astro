@@ -1,6 +1,6 @@
 {
   "name": "hydrogen-astro",
-  "version": "2.5.0",
+  "version": "3.0.0",
   "description": "Astro and Tailwindcss Personal Blog Starter",
   "author": "statichunt",
   "license": "MIT",
@@ -9,14 +9,17 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "format": "prettier -w ./src"
+    "format": "prettier -w ./src",
+    "deploy:cf-workers": "npm run build && wrangler deploy",
+    "preview:cf-workers": "npm run build && wrangler dev",
+    "check": "astro check"
   },
   "dependencies": {
-    "@astrojs/mdx": "4.2.5",
-    "@astrojs/react": "4.2.5",
+    "@astrojs/mdx": "5.0.0-beta.9",
+    "@astrojs/react": "5.0.0-beta.3",
     "@astrojs/rss": "4.0.11",
-    "@astrojs/sitemap": "3.3.1",
-    "astro": "5.7.5",
+    "@astrojs/sitemap": "3.6.1-beta.3",
+    "astro": "6.0.0-beta.17",
     "astro-auto-import": "^0.4.4",
     "astro-font": "^1.1.0",
     "date-fns": "^4.1.0",
@@ -33,7 +36,7 @@
     "remark-toc": "^9.0.0",
     "shiki": "^3.3.0",
     "swiper": "^11.2.6",
-    "vite": "^6.3.2"
+    "vite": "^7.3.1"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.10",
@@ -48,6 +51,8 @@
     "prettier-plugin-tailwindcss": "^0.6.11",
     "sharp": "0.33.5",
     "tailwindcss": "^4.1.4",
-    "typescript": "5.8.3"
+    "typescript": "^5.0.0",
+    "wrangler": "^4",
+    "@astrojs/check": "0.9.7-beta.1"
   }
 }
