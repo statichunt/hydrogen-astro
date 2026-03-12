@@ -13,6 +13,7 @@ interface Props {
   format?: "auto" | "avif" | "jpeg" | "png" | "svg" | "webp";
   class?: string;
   style?: any;
+  fit?: "cover" | "contain" | "fill" | "none" | "scale-down";
 }
 
 // Destructuring Astro.props to get the component's props
@@ -26,6 +27,7 @@ let {
   class: className,
   format,
   style,
+  fit,
 } = Astro.props;
 
 src = `/public${src}`;
@@ -55,6 +57,7 @@ const isValidPath = images[src] ? true : false;
       class={className}
       format={format}
       style={style}
+      fit={fit}
     />
   )
 }
