@@ -21,7 +21,12 @@
 
   "params": {
     "contact_form_action": "#",
-    "copyright": "Copyright © 2024 a theme by [statichunt](https://statichunt.com)"
+    "copyright": "Copyright © 2026 a theme by [statichunt](https://statichunt.com)"
+  },
+
+  "google_tag_manager": {
+    "enable": false,
+    "gtm_id": "GTM-XXXXXX"
   },
 
   "disqus": {

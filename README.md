@@ -5,8 +5,8 @@
 </h2>
 
 <p align=center>
-  <a href="https://github.com/withastro/astro/releases/tag/astro%404.4.4" alt="Contributors">
-    <img src="https://img.shields.io/static/v1?label=ASTRO&message=4.4&color=000&logo=astro" />
+  <a href="https://github.com/withastro/astro/releases/tag/astro%406.3.1" alt="Contributors">
+    <img src="https://img.shields.io/static/v1?label=ASTRO&message=6.3&color=000&logo=astro" />
   </a>
 
   <a href="https://github.com/statichunt/hydrogen-astro/blob/main/LICENSE">
@@ -23,6 +23,8 @@
 ## Key Features
 
 - Supports Contact Form
+- Google Tag Manager Integrated
+- LLM-ready docs generation (llms.txt, llms-full.txt, and per-page .md)
 - Disqus Comment Support
 - Related Posts Suggestion
 - MDX Support with many built-in custom components
@@ -33,6 +35,7 @@
 - Images Optimized With Astro-Image
 
 <!-- installation -->
+
 ## Installation
 
 After downloading the template, you have some prerequisites to install. Then you can run it on your localhost. You can view the package.json file to see which scripts are included.
@@ -66,6 +69,7 @@ After finishing all the customization, you can create a production build by runn
 ```
 npm run build
 ```
+
 <!-- edit with sitepins -->
 
 ## 📝 Edit Content with CMS
@@ -81,12 +85,14 @@ Click the Edit with Sitepins button below and follow the on-screen instructions 
   </a>
 
 <!-- reporting issue -->
+
 ## Reporting Issues
 
 We use GitHub Issues as the official bug tracker for this Template. Please Search [existing issues](https://github.com/statichunt/hydrogen-astro/issues). It’s possible someone has already reported the same problem.
 If your problem or idea has not been addressed yet, feel free to [open a new issue](https://github.com/statichunt/hydrogen-astro/issues).
 
 <!-- licence -->
+
 ## License
 
 Copyright (c) 2024 - Present, Designed & Developed by [statichunt](https://statichunt.com)

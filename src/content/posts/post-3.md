@@ -1,6 +1,6 @@
 ---
 title: What you need to know about Photography
-date: 2024-05-02T06:00:00+00:00
+date: 2026-05-02T06:00:00+00:00
 image: /images/posts/post-3.jpg
 categories:
   - Assistant
