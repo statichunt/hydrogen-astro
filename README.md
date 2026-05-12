@@ -18,7 +18,7 @@
     <img src="https://img.shields.io/github/contributors/statichunt/hydrogen-astro" alt="contributors"></a>
 </p>
 
-![hydrogen](https://statichunt-images.netlify.app/themes/astro-hydrogen.png)
+![hydrogen](https://images.statichunt.com/themes/astro-hydrogen.png)
 
 ## Key Features
 
