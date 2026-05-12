@@ -1,6 +1,6 @@
 ---
 title: "How to make toys from old Olarpaper"
-date: 2026-09-23T05:00:00Z
+date: 2026-05-23T05:00:00Z
 image: /images/posts/post-8.jpg
 categories:
   - Technology
