@@ -23,7 +23,7 @@ const { Content } = await render(contact);
             <Content />
           </div>
           <div class="mt-12 pt-12">
-            <h3 set:html={markdownify(title)} class="h5 font-normal text-3xl" />
+            <h3 set:html={markdownify(title)} class="h5 font-normal text-3xl"></h3>
             <form class="contact-form mt-6" action={contact_form_action}>
               <div class="row mb-6">
                 <div class="md:col-6">

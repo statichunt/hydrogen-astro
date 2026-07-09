@@ -34,12 +34,12 @@ const sortPostByDate = sortByDate(posts);
           <h1
             set:html={markdownify(name)}
             class="mt-12 text-6xl lg:text-8xl font-semibold"
-          />
+          ></h1>
           <p
             set:html={markdownify(designation)}
             class="mt-6 text-primary text-xl"
-          />
-          <p set:html={markdownify(bio)} class="mt-4 leading-9 text-xl" />
+          ></p>
+          <p set:html={markdownify(bio)} class="mt-4 leading-9 text-xl"></p>
           <Social source={social.main} className="social-icons mt-8" />
         </div>
       </div>
